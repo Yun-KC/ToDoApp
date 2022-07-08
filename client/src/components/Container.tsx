@@ -3,10 +3,12 @@ import type { FC } from 'react';
 import React from 'react';
 import { useCallback, useState } from 'react';
 import { Card } from './Card';
-import { Motion, spring, presets } from 'react-motion';
+import { Motion, spring } from 'react-motion';
+
+// TODO: 부모 크기에 따라 컨테이너 크기와 카드 요소들의 크기 변경
 
 const style = {
-  width: 400,
+  width: '600px',
 };
 
 export interface Item {
@@ -63,7 +65,7 @@ export const Container: FC = () => {
 
   return (
     <>
-      <div style={style}>
+      <div style={{ ...style, position: 'relative' }}>
         {cards.map((card, i) => (
           <Motion
             key={card.id}

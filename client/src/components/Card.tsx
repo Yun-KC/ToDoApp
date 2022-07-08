@@ -2,25 +2,7 @@ import type { FC } from 'react';
 import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { ItemTypes } from '../itemType';
-import styled from 'styled-components';
 import './Card.css';
-type cardDivProps = {
-  order: number;
-};
-
-const CardDiv = styled.div<cardDivProps>`
-  background-color: #fff;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  height: 50px;
-  margin-bottom: 10px;
-  padding: 10px;
-  width: 100%;
-  ${({ order }) => {
-    return `transform: translate3d(0px, ${order}px, 0px)`;
-  }};
-  position: absolute;
-`;
 
 export interface CardProps {
   id: any;
@@ -36,7 +18,7 @@ interface DragItem {
   type: string;
 }
 
-export const Card: FC<CardProps> = ({ id, text, index, moveCard, y }) => {
+export const Card: FC<CardProps> = React.memo(({ id, text, index, moveCard, y }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -116,4 +98,4 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard, y }) => {
       {text}
     </div>
   );
-};
+});
