@@ -2,14 +2,18 @@ import update from 'immutability-helper';
 import type { FC } from 'react';
 import React from 'react';
 import { useCallback, useState } from 'react';
-import { Card } from './Card';
+import { Card } from './Card/Card';
 import { Motion, spring } from 'react-motion';
-
+import styled from 'styled-components';
 // TODO: 부모 크기에 따라 컨테이너 크기와 카드 요소들의 크기 변경
 
-const style = {
-  width: '600px',
-};
+const CardContainer = styled.div`
+  grid-area: cardlist;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+`;
 
 export interface Item {
   id: number;
@@ -65,7 +69,7 @@ export const Container: FC = () => {
 
   return (
     <>
-      <div style={{ ...style, position: 'relative' }}>
+      <CardContainer>
         {cards.map((card, i) => (
           <Motion
             key={card.id}
@@ -76,7 +80,7 @@ export const Container: FC = () => {
             {({ y }) => <Card key={card.id} index={i} id={card.id} text={card.text} moveCard={moveCard} y={y} />}
           </Motion>
         ))}
-      </div>
+      </CardContainer>
     </>
   );
 };
