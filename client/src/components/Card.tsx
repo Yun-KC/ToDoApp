@@ -1,16 +1,25 @@
 import type { FC } from 'react';
 import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-
 import { ItemTypes } from '../itemType';
+import styled from 'styled-components';
 
-const style = {
-  border: '1px dashed gray',
-  padding: '0.5rem 1rem',
-  marginBottom: '.5rem',
-  backgroundColor: 'white',
-  cursor: 'move',
+type cardDivProps = {
+  order: number;
 };
+
+const CardDiv = styled.div<cardDivProps>`
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  ${({ order }) => `transform: translate3d(0px, ${order * 80}px, 0px)`};
+  transition: all 0.3s;
+  position: absolute;
+`;
 
 export interface CardProps {
   id: any;
@@ -101,8 +110,8 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
   return (
-    <div ref={ref} style={{ ...style, opacity }}>
+    <CardDiv ref={ref} order={index} style={{ opacity }}>
       {text}
-    </div>
+    </CardDiv>
   );
 };
