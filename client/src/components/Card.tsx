@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { ItemTypes } from '../itemType';
 import styled from 'styled-components';
-
+import './Card.css';
 type cardDivProps = {
   order: number;
 };
@@ -16,7 +16,9 @@ const CardDiv = styled.div<cardDivProps>`
   margin-bottom: 10px;
   padding: 10px;
   width: 100%;
-  ${({ order }) => `transform: translate3d(0px, ${order}px, 0px)`};
+  ${({ order }) => {
+    return `transform: translate3d(0px, ${order}px, 0px)`;
+  }};
   position: absolute;
 `;
 
@@ -110,8 +112,8 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard, y }) => {
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
   return (
-    <CardDiv ref={ref} order={y} style={{ opacity }}>
+    <div className='card' ref={ref} style={{ opacity, transform: `translate3d(0px, ${y}px, 0px)` }}>
       {text}
-    </CardDiv>
+    </div>
   );
 };

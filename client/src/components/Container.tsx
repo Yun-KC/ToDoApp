@@ -68,7 +68,7 @@ export const Container: FC = () => {
           <Motion
             key={card.id}
             style={{
-              y: spring(i * 80, presets.wobbly),
+              y: spring(i * 80, { stiffness: 300, damping: 40 }),
             }}
           >
             {({ y }) => <Card key={card.id} index={i} id={card.id} text={card.text} moveCard={moveCard} y={y} />}
