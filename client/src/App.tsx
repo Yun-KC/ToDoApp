@@ -1,7 +1,15 @@
 import React from 'react';
-
-const App: React.FC = () => {
-  return <div className='App'>하이</div>;
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Container } from './components/Container';
+const App = () => {
+  return (
+    <div className='App'>
+      <DndProvider backend={HTML5Backend}>
+        <Container />
+      </DndProvider>
+    </div>
+  );
 };
 
 export default App;
