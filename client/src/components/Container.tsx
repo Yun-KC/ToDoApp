@@ -2,8 +2,8 @@ import update from 'immutability-helper';
 import type { FC } from 'react';
 import React from 'react';
 import { useCallback, useState } from 'react';
-
 import { Card } from './Card';
+import { Motion, spring, presets } from 'react-motion';
 
 const style = {
   width: 400,
@@ -61,13 +61,20 @@ export const Container: FC = () => {
     );
   }, []);
 
-  const renderCard = useCallback((card: { id: number; text: string }, index: number) => {
-    return <Card key={card.id} index={index} id={card.id} text={card.text} moveCard={moveCard} />;
-  }, []);
-
   return (
     <>
-      <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
+      <div style={style}>
+        {cards.map((card, i) => (
+          <Motion
+            key={card.id}
+            style={{
+              y: spring(i * 80, presets.wobbly),
+            }}
+          >
+            {({ y }) => <Card key={card.id} index={i} id={card.id} text={card.text} moveCard={moveCard} y={y} />}
+          </Motion>
+        ))}
+      </div>
     </>
   );
 };

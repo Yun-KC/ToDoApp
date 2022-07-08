@@ -16,8 +16,7 @@ const CardDiv = styled.div<cardDivProps>`
   margin-bottom: 10px;
   padding: 10px;
   width: 100%;
-  ${({ order }) => `transform: translate3d(0px, ${order * 80}px, 0px)`};
-  transition: all 0.3s;
+  ${({ order }) => `transform: translate3d(0px, ${order}px, 0px)`};
   position: absolute;
 `;
 
@@ -25,6 +24,7 @@ export interface CardProps {
   id: any;
   text: string;
   index: number;
+  y: number;
   moveCard: (dragIndex: number, hoverIndex: number) => void;
 }
 
@@ -34,7 +34,7 @@ interface DragItem {
   type: string;
 }
 
-export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
+export const Card: FC<CardProps> = ({ id, text, index, moveCard, y }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -110,7 +110,7 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
   return (
-    <CardDiv ref={ref} order={index} style={{ opacity }}>
+    <CardDiv ref={ref} order={y} style={{ opacity }}>
       {text}
     </CardDiv>
   );
