@@ -1,10 +1,10 @@
-import update from 'immutability-helper';
-import type { FC } from 'react';
-import React from 'react';
-import { useCallback, useState } from 'react';
-import { Card } from './Card/Card';
-import { Motion, spring } from 'react-motion';
-import styled from 'styled-components';
+import update from "immutability-helper";
+import type { FC } from "react";
+import React from "react";
+import { useCallback, useState } from "react";
+import { Card } from "./Card/Card";
+import { Motion, spring } from "react-motion";
+import styled from "styled-components";
 // TODO: 부모 크기에 따라 컨테이너 크기와 카드 요소들의 크기 변경
 // 아제발돌아와
 const CardContainer = styled.div`
@@ -12,7 +12,8 @@ const CardContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: red;
+  overflow: scroll;
+  background-color: #bcfcf3;
 `;
 
 export interface Item {
@@ -28,31 +29,43 @@ export const Container: FC = () => {
   const [cards, setCards] = useState([
     {
       id: 1,
-      text: 'Write a cool JS library',
+      text: "Write a cool JS library",
     },
     {
       id: 2,
-      text: 'Make it generic enough',
+      text: "Make it generic enough",
     },
     {
       id: 3,
-      text: 'Write README',
+      text: "Write README",
     },
     {
       id: 4,
-      text: 'Create some examples',
+      text: "Create some examples",
     },
     {
       id: 5,
-      text: 'Spam in Twitter and IRC to promote it (note that this element is taller than the others)',
+      text: "Spam in Twitter and IRC to promote it (note that this element is taller than the others)",
     },
     {
       id: 6,
-      text: '???',
+      text: "???",
     },
     {
       id: 7,
-      text: 'PROFIT',
+      text: "PROFIT",
+    },
+    {
+      id: 8,
+      text: "PROFIT",
+    },
+    {
+      id: 9,
+      text: "PROFIT",
+    },
+    {
+      id: 10,
+      text: "PROFIT",
     },
   ]);
 
