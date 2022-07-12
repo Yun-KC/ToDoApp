@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { Container } from "./components/Container";
-import GlobalStyle from "./GlobalStyle";
+import { TaskCardList } from "./components/TaskCardList/TaskCardList";
+import { RunningTaskCardContainer } from "./components/RunningTaskCard/RunningTaskCardContainer";
 import styled from "styled-components";
 
 const AppContainer = styled.div`
@@ -13,17 +13,40 @@ const AppContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "header header "
-    "main cardlist"
+    "running taskCardList"
     "footer footer";
 `;
-
+// 데이터 관리는 App 에서
+export interface Item {
+  id: number;
+  text: string;
+}
+const testCards: Item[] = [
+  {
+    id: 1,
+    text: "Write a cool JS library",
+  },
+  {
+    id: 2,
+    text: "Make it generic enough",
+  },
+  {
+    id: 3,
+    text: "Write README",
+  },
+  {
+    id: 4,
+    text: "Create some examples",
+  },
+];
 const App = () => {
+  const [cards, setCards] = useState<Item[]>(testCards);
   return (
     <>
-      <GlobalStyle />
       <AppContainer>
         <DndProvider backend={HTML5Backend}>
-          <Container />
+          <TaskCardList cards={cards} setCards={setCards} />
+          <RunningTaskCardContainer />
         </DndProvider>
       </AppContainer>
     </>

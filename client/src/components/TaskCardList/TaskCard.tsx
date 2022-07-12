@@ -1,10 +1,11 @@
 import type { FC } from "react";
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import type { DragSourceMonitor } from "react-dnd";
 import { ItemTypes } from "../../itemType";
-import "./Card.css";
+import "./TaskCard.css";
 
-export interface CardProps {
+export interface TaskCardProps {
   id: any;
   text: string;
   index: number;
@@ -18,7 +19,7 @@ interface DragItem {
   type: string;
 }
 
-export const Card: FC<CardProps> = React.memo(({ id, text, index, moveCard, y }) => {
+export const TaskCard: FC<TaskCardProps> = React.memo(({ id, text, index, moveCard, y }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -86,16 +87,18 @@ export const Card: FC<CardProps> = React.memo(({ id, text, index, moveCard, y })
     item: () => {
       return { id, index, text };
     },
-    collect: (monitor: any) => ({
-      isDragging: monitor.isDragging(),
-    }),
+    collect: (monitor: DragSourceMonitor) => {
+      return {
+        isDragging: monitor.isDragging(),
+      };
+    },
   });
 
   const opacity = isDragging ? 0 : 1;
   //transform: `translate3d(0px, ${y}px, 0px)`
   drag(drop(ref));
   return (
-    <div className="card" ref={ref} style={{ opacity, top: y }}>
+    <div className="taskCard" ref={ref} style={{ opacity, top: y }}>
       {text}
     </div>
   );
