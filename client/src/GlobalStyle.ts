@@ -4,7 +4,15 @@ import reset from "styled-reset";
 const GlobalStyle = createGlobalStyle`
     ${reset};
     html {
-      box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    * {
+      /* 스크롤 바 제거 */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      ::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+      }
     }
     body{
         padding: 0;

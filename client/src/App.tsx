@@ -7,8 +7,8 @@ import styled from 'styled-components';
 
 const AppContainer = styled.div`
   display: grid;
-  width: 100vw;
-  height: 100vh;
+  width: 1000px;
+  height: 900px;
   grid-template-rows: 1fr 3fr 1fr;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
