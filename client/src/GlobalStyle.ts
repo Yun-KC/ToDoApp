@@ -1,10 +1,10 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
     ${reset};
     html {
-      box-sizing: content-box;
+      box-sizing: border-box;
     }
     body{
         padding: 0;

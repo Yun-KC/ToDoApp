@@ -59,14 +59,6 @@ export const Container: FC = () => {
       id: 8,
       text: "PROFIT",
     },
-    {
-      id: 9,
-      text: "PROFIT",
-    },
-    {
-      id: 10,
-      text: "PROFIT",
-    },
   ]);
 
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
