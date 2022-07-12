@@ -4,7 +4,7 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
     ${reset};
     html {
-      box-sizing: content-box;
+        box-sizing: content-box;
     }
     body{
         padding: 0;
