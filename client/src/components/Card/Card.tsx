@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import React, { useRef } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
-import { ItemTypes } from '../../itemType';
-import './Card.css';
+import type { FC } from "react";
+import React, { useRef } from "react";
+import { useDrag, useDrop } from "react-dnd";
+import { ItemTypes } from "../../itemType";
+import "./Card.css";
 
 export interface CardProps {
   id: any;
@@ -92,9 +92,10 @@ export const Card: FC<CardProps> = React.memo(({ id, text, index, moveCard, y })
   });
 
   const opacity = isDragging ? 0 : 1;
+  //transform: `translate3d(0px, ${y}px, 0px)`
   drag(drop(ref));
   return (
-    <div className='card' ref={ref} style={{ opacity, transform: `translate3d(0px, ${y}px, 0px)` }}>
+    <div className="card" ref={ref} style={{ opacity, top: y }}>
       {text}
     </div>
   );
