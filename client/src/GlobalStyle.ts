@@ -6,6 +6,14 @@ const GlobalStyle = createGlobalStyle`
     html {
         box-sizing: content-box;
     }
+    * {
+      /* 스크롤 바 제거 */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      ::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+      }
+    }
     body{
         padding: 0;
         margin: 0;
