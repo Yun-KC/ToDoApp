@@ -36,14 +36,6 @@ export const TaskCardList: FC<{ cards: Item[]; setCards: React.Dispatch<React.Se
       })
     );
   }, []);
-  // const { itemType, isDragging, item, initialOffset, currentOffset } = useDragLayer((monitor) => ({
-  //   item: monitor.getItem(),
-  //   itemType: monitor.getItemType(),
-  //   initialOffset: monitor.getInitialSourceClientOffset(),
-  //   currentOffset: monitor.getSourceClientOffset(),
-  //   isDragging: monitor.isDragging(),
-  // }));
-  // console.log(currentOffset);
 
   return (
     <>
