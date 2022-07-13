@@ -9,10 +9,9 @@ import { useDragLayer } from "react-dnd";
 
 const TaskCardListDiv = styled.div`
   grid-area: taskCardList;
-  position: relative;
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  overflow: visible;
   background-color: #bcfcf3;
 `;
 
@@ -37,6 +36,14 @@ export const TaskCardList: FC<{ cards: Item[]; setCards: React.Dispatch<React.Se
       })
     );
   }, []);
+  // const { itemType, isDragging, item, initialOffset, currentOffset } = useDragLayer((monitor) => ({
+  //   item: monitor.getItem(),
+  //   itemType: monitor.getItemType(),
+  //   initialOffset: monitor.getInitialSourceClientOffset(),
+  //   currentOffset: monitor.getSourceClientOffset(),
+  //   isDragging: monitor.isDragging(),
+  // }));
+  // console.log(currentOffset);
 
   return (
     <>
@@ -55,11 +62,3 @@ export const TaskCardList: FC<{ cards: Item[]; setCards: React.Dispatch<React.Se
     </>
   );
 };
-
-// const { itemType, isDragging, item, initialOffset, currentOffset } = useDragLayer((monitor) => ({
-//   item: monitor.getItem(),
-//   itemType: monitor.getItemType(),
-//   initialOffset: monitor.getInitialSourceClientOffset(),
-//   currentOffset: monitor.getSourceClientOffset(),
-//   isDragging: monitor.isDragging(),
-// }));

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import React, { useRef } from "react";
-import { useDrag, useDrop } from "react-dnd";
+import { useDrag, useDragLayer, useDrop, XYCoord } from "react-dnd";
 
 import { ItemTypes } from "../../itemType";
 import "./TaskCard.css";
@@ -21,6 +21,7 @@ interface DragItem {
 
 export const TaskCard: FC<TaskCardProps> = React.memo(({ id, text, index, moveCard, y }) => {
   const ref = useRef<HTMLDivElement>(null);
+  /*
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
     hover(item: DragItem, monitor) {
@@ -81,6 +82,23 @@ export const TaskCard: FC<TaskCardProps> = React.memo(({ id, text, index, moveCa
       item.index = hoverIndex;
     },
   });
+*/
+  function getItemStyles(currentOffset: XYCoord | null) {
+    if (!currentOffset) {
+      return {
+        display: "none",
+      };
+    }
+
+    let { x, y } = currentOffset;
+
+    const transform = `translate(${x}px, ${y}px)`;
+    return {
+      transform,
+      WebkitTransform: transform,
+      zIndex: 1000,
+    };
+  }
 
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.CARD,
@@ -93,12 +111,17 @@ export const TaskCard: FC<TaskCardProps> = React.memo(({ id, text, index, moveCa
       };
     },
   });
+  const { currentOffset } = useDragLayer((monitor) => ({
+    currentOffset: monitor.getDifferenceFromInitialOffset(),
+  }));
 
-  const opacity = isDragging ? 0 : 1;
-  //transform: `translate3d(0px, ${y}px, 0px)`
-  drag(drop(ref));
+  // drag(drop(ref));
+  drag(ref);
+
+  // const transform = `translate3d(${currentOffset.x}px, ${currentOffset.y}px, 0)`
+
   return (
-    <div className="taskCard" ref={ref} style={{ opacity, top: y }}>
+    <div className="taskCard" ref={ref} style={{ ...(isDragging ? getItemStyles(currentOffset) : null) }}>
       {text}
     </div>
   );

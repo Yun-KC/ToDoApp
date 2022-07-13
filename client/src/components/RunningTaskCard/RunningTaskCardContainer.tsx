@@ -20,7 +20,6 @@ export const RunningTaskCardContainer = () => {
       };
     },
   });
-  console.log(collect);
 
   return <RunningTaskCardContainerDiv ref={ref}>갸악</RunningTaskCardContainerDiv>;
 };
