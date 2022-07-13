@@ -39,6 +39,17 @@ const testCards: Item[] = [
     text: "Create some examples",
   },
 ];
+
+/* TODO: 구현해야할 기능 정리
+1. TaskCard 컴포넌트는 마우스 드래그를 통해
+ RunningTaskCard, TaskCardList 등 자유롭게 이동가능
+
+2. 드래그 시 엘리먼트 잔상이 아니라 TaskCard 컴포넌트가 따라다녀야 함
+
+3. TaskCardList에 삽입 시 내가 원하는 순서에 삽입 가능해야함
+ - TaskCard들이 애니메이션 효과를 가져야함
+
+*/
 const App = () => {
   const [cards, setCards] = useState<Item[]>(testCards);
   return (

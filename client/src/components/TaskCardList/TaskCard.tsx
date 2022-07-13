@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import type { DragSourceMonitor } from "react-dnd";
+
 import { ItemTypes } from "../../itemType";
 import "./TaskCard.css";
 
@@ -87,7 +87,7 @@ export const TaskCard: FC<TaskCardProps> = React.memo(({ id, text, index, moveCa
     item: () => {
       return { id, index, text };
     },
-    collect: (monitor: DragSourceMonitor) => {
+    collect: (monitor) => {
       return {
         isDragging: monitor.isDragging(),
       };
